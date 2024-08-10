@@ -18,13 +18,13 @@ type WrapError struct {
 func New(errorId ErrorId, errType ErrorType) *WrapError {
 	file, line := whereIsError()
 	err := errors.New(string(errorId))
-	return newWrapError(err, file, line)
+	return newWrapError(err, file, line).WithType(errType)
 }
 
 func NewWrap(errorId ErrorId, trigger error) *WrapError {
 	file, line := whereIsError()
 	err := errors.New(string(errorId))
-	wrapErr, ok := trigger.(WrapError)
+	wrapErr, ok := trigger.(*WrapError)
 	if !ok {
 		return newWrapError(err, file, line).Wrap(trigger)
 	}

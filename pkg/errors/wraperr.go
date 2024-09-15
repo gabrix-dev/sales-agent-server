@@ -50,7 +50,12 @@ func whereIsError() (string, uint) {
 	return file, uint(line)
 }
 
-func (e WrapError) Error() string {
+func Is(err error, target ErrorType) bool {
+	wraperr, ok := err.(*WrapError)
+	return ok && wraperr.ErrorType == target
+}
+
+func (e *WrapError) Error() string {
 	return e.format()
 }
 

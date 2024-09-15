@@ -12,6 +12,8 @@ func HandleError(w http.ResponseWriter, wrapErr *errors.WrapError) {
 	switch wrapErr.ErrorType {
 	case errors.NotFoundError:
 		w.WriteHeader(http.StatusNotFound)
+	case errors.BadRequest:
+		w.WriteHeader(http.StatusBadRequest)
 	default:
 		w.WriteHeader(http.StatusInternalServerError)
 	}

@@ -1,0 +1,15 @@
+{
+    "name":"Send schedule call link",
+    "description":"Send the call schedule link to a user that wants more information about the services offered by TradingSpain",
+    "parameters":{
+        "type": "object",
+        "properties": {
+            "user_name": {
+                "type": "string",
+                "description": "The user's first name. The sales agent will use it to talk to the user using its name."
+            }
+        },
+        "required": ["user_name"],
+        "additionalProperties": false
+    }
+}
